@@ -20,6 +20,7 @@ public:
     IPAddress GetAddress() const;
     uint16_t GetPort() const;
 
+    void SetFamily(int family);
     int GetFamily() const;
 
     std::tuple<sockaddr *, socklen_t> GetSocketAddress() const;

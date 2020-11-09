@@ -12,11 +12,17 @@ public:
 
     TCPSocket(const IPAddress& addr, uint16_t port);
 
+    TCPSocket(int socket, int family);
+
     virtual ~TCPSocket() = default;
 
     bool Connect(const Endpoint& endpoint);
 
-    bool Connect(const IPAddress& addr, uint16_t port);
+    bool Bind(const Endpoint& endpoint);
+
+    bool Listen();
+
+    TCPSocket Accept();
 
     ssize_t Send(uint8_t const * buffer, size_t length, int flags = 0);
 

@@ -100,15 +100,56 @@ int udpTest()
     return 0;
 }
 
+int tcpServerTest()
+{
+    TCPSocket socket(IPAddress("0.0.0.0"), 9000);
+
+    const char * name = "Steve";
+    socket.Send((uint8_t *)name, sizeof(name));
+
+    uint8_t buffer[4096];
+    socket.Receive(buffer, sizeof(buffer));
+
+    printf("%s\n", buffer);
+
+    socket.Close();
+
+    return 0;
+}
+
+int udpServerTest()
+{
+    UDPSocket socket;
+    Endpoint endpoint(IPAddress("0.0.0.0"), 9000);
+
+    const char * name = "Steve";
+    socket.SendTo((uint8_t *)name, sizeof(name), endpoint);
+    printf("SendTo()\n");
+
+    uint8_t buffer[4096];
+    socket.ReceiveFrom(buffer, sizeof(buffer), nullptr);
+    printf("ReceiveFrom()\n");
+
+    printf("%s\n", buffer);
+
+    socket.Close();
+
+    return 0;
+}
+
 int main(int argc, char * argv[])
 {
-    if (tcpTest() > 0) {
-        return 1;
-    }
+    // if (tcpTest() > 0) {
+    //     return 1;
+    // }
 
-    if (udpTest() > 0) {
-        return 1;
-    }
+    // if (udpTest() > 0) {
+    //     return 1;
+    // }
+
+    // tcpServerTest();
+
+    udpServerTest();
 
     return 0;
 }

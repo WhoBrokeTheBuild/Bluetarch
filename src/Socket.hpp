@@ -13,6 +13,8 @@ public:
 
     Socket();
 
+    Socket(int socket, int family);
+
     virtual ~Socket();
 
     bool Open(int family, int type);

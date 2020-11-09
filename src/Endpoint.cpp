@@ -53,6 +53,11 @@ uint16_t Endpoint::GetPort() const
     return 0;
 }
 
+void Endpoint::SetFamily(int family)
+{
+    _family = family;
+}
+
 int Endpoint::GetFamily() const
 {
     return _family;

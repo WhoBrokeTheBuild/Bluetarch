@@ -11,7 +11,7 @@ public:
 
     UDPSocket();
 
-    bool Bind(uint16_t port);
+    bool Bind(const Endpoint& endpoint);
 
     ssize_t SendTo(uint8_t const * buffer, size_t length, const Endpoint& endpoint, int flags = 0);
     ssize_t ReceiveFrom(uint8_t * buffer, size_t length, Endpoint * endpoint, int flags = 0);

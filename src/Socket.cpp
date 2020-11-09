@@ -17,6 +17,11 @@ Socket::Socket()
     , _socket(INVALID_SOCKET)
 { }
 
+Socket::Socket(int socket, int family)
+    : _family(family)
+    , _socket(socket)
+{ }
+
 Socket::~Socket()
 {
     Close();
