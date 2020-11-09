@@ -9,6 +9,7 @@ FILE(
     src/*.cpp
 )
 
+
 ADD_EXECUTABLE(
     client
     ${sources}
@@ -27,6 +28,7 @@ TARGET_INCLUDE_DIRECTORIES(
         src
 )
 
+
 ADD_EXECUTABLE(
     server
     ${sources}
@@ -44,6 +46,26 @@ TARGET_INCLUDE_DIRECTORIES(
     PUBLIC
         src
 )
+
+
+ADD_EXECUTABLE(
+    dnsclient
+    ${sources}
+    dnsclient/main.cpp
+)
+
+SET_TARGET_PROPERTIES(
+    dnsclient
+    PROPERTIES
+        CXX_STANDARD 17
+)
+
+TARGET_INCLUDE_DIRECTORIES(
+    dnsclient
+    PUBLIC
+        src
+)
+
 
 ADD_CUSTOM_TARGET(
     run-client
