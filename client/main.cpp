@@ -102,7 +102,7 @@ int udpTest()
 
 int tcpServerTest()
 {
-    TCPSocket socket(IPAddress("0.0.0.0"), 9000);
+    TCPSocket socket(IPAddress("192.168.1.73"), 9000);
 
     const char * name = "Steve";
     socket.Send((uint8_t *)name, sizeof(name));
@@ -147,9 +147,9 @@ int main(int argc, char * argv[])
     //     return 1;
     // }
 
-    // tcpServerTest();
+    tcpServerTest();
 
-    udpServerTest();
+    //udpServerTest();
 
     return 0;
 }

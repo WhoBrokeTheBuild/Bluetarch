@@ -22,7 +22,7 @@ public:
 
     bool Listen();
 
-    TCPSocket Accept();
+    TCPSocket Accept(Endpoint * endpoint);
 
     ssize_t Send(uint8_t const * buffer, size_t length, int flags = 0);
 

@@ -32,7 +32,7 @@ IPAddress::IPAddress(int family /* = AF_INET */)
 IPAddress::IPAddress(uint8_t addr[], int family /* = AF_INET */)
     : _family(family)
 {
-    memcpy(_address, addr, sizeof(_address));
+    memcpy(_address, addr, GetAddressSize());
 }
 
 IPAddress::IPAddress(const IPAddress& other)
@@ -86,7 +86,7 @@ int IPAddress::GetAddressSize() const
         return 16;
     }
 
-    return -1;
+    return 0;
 }
 
 uint8_t * IPAddress::GetAddress() const

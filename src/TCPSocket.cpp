@@ -73,20 +73,26 @@ bool TCPSocket::Listen()
     return true;
 }
 
-TCPSocket TCPSocket::Accept()
+TCPSocket TCPSocket::Accept(Endpoint * endpoint /* = nullptr */)
 {
-    Endpoint endpoint;
+    int newSocket = INVALID_SOCKET;
 
-    auto[saddr, slen] = endpoint.GetSocketAddress();
+    if (endpoint) {
+        endpoint->SetFamily(_family);
+        auto[saddr, slen] = endpoint->GetSocketAddress();
+        newSocket = accept(_socket, saddr, &slen);
+    }
+    else {
+        newSocket = accept(_socket, nullptr, nullptr);
+    }
 
-    int newSocket = accept(_socket, saddr, &slen);
     if (newSocket < 0) {
         _error = "accept() " + std::string(strerror(errno));
         Close();
         return TCPSocket();
     }
 
-    return TCPSocket(newSocket, endpoint.GetFamily());
+    return TCPSocket(newSocket, _family);
 }
 
 ssize_t TCPSocket::Send(uint8_t const * buffer, size_t length, int flags /* = 0 */)
